@@ -1,0 +1,3 @@
+[console_scripts]
+ccbp = ccbp_ide_cli.cli:main
+

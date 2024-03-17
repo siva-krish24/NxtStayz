@@ -1,0 +1,100 @@
+{
+    "nkb_resources/user/resource/completion_details/v1/": [
+        {
+            "completion_status": "YET_TO_START",
+            "completion_percentage": 1.1,
+            "resource_id": "string",
+            "is_locked": false
+        }
+    ],
+    "nkb_virtual_labs/ide_session/v1/": {
+        "resource_id": "string",
+        "session_id": "string",
+        "session_display_id": "string",
+        "boilerplate_code_s3_url": "https://nkb-backend-otg-media-static.s3.ap-south-1.amazonaws.com/otg_beta/media/ide_testing/session-1.zip",
+        "user_directory_path": "/home/workspace/ccbp/session_1",
+        "is_submit_enabled": true,
+        "tests_download_url": "https://nkb-backend-otg-media-static.s3.ap-south-1.amazonaws.com/otg_beta/media/ide_testing/session-1-tests.zip",
+        "test_type": "JAVA",
+        "metadata": "{\"session_type\": \"QUESTION\", \"question_id\": \"1\"}",
+        "is_deploy_enabled": true,
+        "ide_type": "CCBP_IDE_V2",
+        "is_reusable_session": true,
+        "active_session_display_id": "SFADF"
+    },
+    "nkb_virtual_labs/ide_token/auth_tokens/v1/": {
+      "access_token": "string",
+      "refresh_token": "string",
+      "expires_in": "string",
+      "user_id": "string"
+    },
+    "s3_uploader/credentials/v1/": {
+        "aws_access_key_id": "string",
+        "aws_session_token": null,
+        "bucket_name": "testing-rajesh",
+        "cloudfront_domain": "string",
+        "expiration": "string",
+        "folder_name": "ide",
+        "region_name": "ap-southeast-1",
+        "secret_access_key": "string",
+        "protocol": "http",
+        "object_acl": "public-read",
+        "url_type": "cloudfront"
+    },
+    "nkb_coding_practice/question/ide_coding/submit/v1/": {
+        "submission_results": [
+            {
+                "submission_id": "string",
+                "question_id": "string",
+                "question_score": 1.1,
+                "user_response_score": 1.1,
+                "user_response_id": 1,
+                "passed_test_cases_count": 1,
+                "total_test_cases_count": 1,
+                "test_case_details": [
+                    {
+                        "test_case_id": "string",
+                        "evaluation_result": "CORRECT",
+                        "display_text": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    "nkb_coding_practice/questions/ide_coding/solutions/v1/": {
+        "solutions_details": [
+            {
+                "question_id": "1",
+                "solution_details": {
+                    "time_left_to_unlock_solutions_in_seconds": 0,
+                    "solutions": [
+                        {
+                            "order": 1,
+                            "title": {
+                                "content": "string",
+                                "content_type": "TEXT"
+                            },
+                            "description": {
+                                "content": "string",
+                                "content_type": "TEXT"
+                            },
+                            "session_details": {
+                                "session_id": "string",
+                                "session_display_id": "string"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "nkb_coding_core/code/snippets/publish/v2/": {
+
+    },
+    "nkb_virtual_labs/user/ccbp_ide/stop_session/v1/": {
+
+    },
+    "nkb_virtual_labs/user/ccbp_ide/active_session/v1/": {
+
+    }
+}

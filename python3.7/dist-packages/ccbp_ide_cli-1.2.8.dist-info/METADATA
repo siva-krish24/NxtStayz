@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: ccbp-ide-cli
+Version: 1.2.8
+Summary: CLI for CCBP
+Home-page: https://github.com/revanthgopi/ccbp_ide_cli
+Author: revanth_gopi
+Author-email: revanth@ibhubs.co
+License: UNKNOWN
+Keywords: ccbp_ide_cli
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Requires-Dist: Logentries (==0.17)
+Requires-Dist: boto3 (==1.17.41)
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: progressbar2 (==3.53.1)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: yaspin (==1.5.0)
+
+============
+ccbp-ide-cli
+============
+
+
+
+
+
+
+CLI for CCBP
+
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2021-02-13)
+------------------
+
+* First release on PyPI.
+
+
