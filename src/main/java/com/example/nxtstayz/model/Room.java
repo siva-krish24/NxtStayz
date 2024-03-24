@@ -1,4 +1,4 @@
-package com.example.nxtstayz.modal;
+package com.example.nxtstayz.model;
 
 import javax.persistence.*;
 

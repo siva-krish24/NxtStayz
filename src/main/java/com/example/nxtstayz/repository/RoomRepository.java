@@ -7,16 +7,22 @@
  */
 
 // Write your code here
-package com.exampel.nxtstayz.repository;
+package com.example.nxtstayz.repository;
 
-import com.exampel.nxtstayz.model;
+import com.example.nxtstayz.*;
+import com.example.nxtstayz.model.Hotel;
+import com.example.nxtstayz.model.Room;
 
-import interface RoomRepository {
-    ArrayList<Room> getRooms();
+
+import java.util.ArrayList;
+import java.util.List;
+
+public interface RoomRepository {
+    List<Room> getRooms();
 
     Room getRoomById(int roomID);
 
-    Room addRoom(room room);
+    Room addRoom(Room room);
 
     Room updateRoom(int roomId, Room room);
 

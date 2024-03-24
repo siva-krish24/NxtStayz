@@ -1,15 +1,13 @@
 package com.example.nxtstayz.service;
 
-import com.exampel.nxtstayz.model.Room;
-import com.exampel.nxtstayz.Hotel;
-import com.exampel.nxtstayz.repository.HotelRepository;
-import com.exampel.nxtstayz.respository.RoomJpaRepository;
+import com.example.nxtstayz.model.Room;
+import com.example.nxtstayz.model.Hotel;
+import com.example.nxtstayz.repository.*;
 import com.example.nxtstayz.repository.RoomJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,21 +18,20 @@ public class RoomJpaService implements RoomRepository {
     private RoomJpaRepository roomJpaRepository;
 
     @Autowired
-    private HotelJpasRepository hotelJpaRepository;
+    private HotelJpaRepository hotelJpaRepository;
 
-    public List<room> getRooms() {
-        List<Room> roomList = roomJpaRepository.findAll();
-        ArrayList<Room> room = new ArrayList<>(roomsList);
+    public ArrayList<Room> getRooms() {
+        List<Room> roomsList = roomJpaRepository.findAll();
+        ArrayList<Room> rooms = new ArrayList<>(roomsList);
         return rooms;
-
     }
 
     public Room getRoomById(int roomId) {
         try {
-            Room room = roomJpaRepository.findByID(roomId(roomId).get();
+            Room room = roomJpaRepository.findById(roomId).get();
             return room;
         } catch (Exception e) {
-            throw new ResponseSatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -43,7 +40,7 @@ public class RoomJpaService implements RoomRepository {
         int hotelId = hotel.getHotelId();
 
         try {
-            hotel = hotelJpaRepository.findByID(hotelID).get();
+            hotel = hotelJpaRepository.findById(hotelId).get();
             room.setHotel(hotel);
             roomJpaRepository.save(room);
             return room;
@@ -54,10 +51,10 @@ public class RoomJpaService implements RoomRepository {
 
     public Room updateRoom(int roomId, Room room) {
         try {
-            Room newRoom = roomJpaRepository.findByID(roomId(roomId).get();
+            Room newRoom = roomJpaRepository.findById(roomId).get();
             if (room.getHotel() != null) {
                 int hotelID = room.getHotel().getHotelId();
-                Hotel newHotel = HotelRepository.findByID(hotelId).get();
+                Hotel newHotel = hotelJpaRepository.findById(hotelID).get();
             }
             if (room.getRoomNumber()!= null) {
                 newRoom.setRoomNumber(room.getRoomNumber());
@@ -66,12 +63,14 @@ public class RoomJpaService implements RoomRepository {
                 newRoom.setRoomType(room.getRoomType());
             }
             if (room.getPrice() != 0) {
-                newRoom.setRoomType(room.getPrice());
+                newRoom.setPrice(room.getPrice());
                 return newRoom;
-            } catch (Exception e) {
+            }
+        } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
-        }
+        return new Room();
+    }
 
     public void deleteRoom(int roomId) {
         try {
@@ -80,16 +79,16 @@ public class RoomJpaService implements RoomRepository {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         }
-        throw new ResponseStatusException(HttpsStaus.NOT_CONTENT);
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT);
     }
 
     public Hotel getRoomHotel(int roomId) {
         try {
-            Room room = roomJpaRepository.findByID(roomId).get();
+            Room room = roomJpaRepository.findById(roomId).get();
             Hotel hotel = room.getHotel();
             return hotel;
         } catch (Exception e) {
-            throw new ResponseStausException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 }

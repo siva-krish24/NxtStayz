@@ -7,13 +7,17 @@
  */
 
 // Write your code here
-package com.example.nxtstayz.modal;
+package com.example.nxtstayz.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "hotel")
 public class Hotel {
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

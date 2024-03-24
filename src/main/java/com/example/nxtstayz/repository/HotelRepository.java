@@ -1,11 +1,11 @@
-package com.exampel.nxtstayz.repository;
+package com.example.nxtstayz.repository;
 
-import com.exampel.nextstayz.model.Hotel;
+import com.example.nxtstayz.model.Hotel;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface HotelRepository {
-    ArrayList<Hotel> getHotels();
+    List<Hotel> getHotels();
 
     Hotel getHotelByID(int hotelId);
 

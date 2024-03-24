@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class RoomController {
@@ -14,12 +15,12 @@ public class RoomController {
     private RoomJpaService roomJpaService;
 
     @GetMapping("/hotels/rooms")
-    public ArrayList<Room> getRooms() {
-        return roomJpaService.getrooms();
+    public List<Room> getRooms() {
+        return roomJpaService.getRooms();
     }
 
     @GetMapping("/hotels/rooms/{roomId}")
-    public Room getRoomById(@PathVariable(roomId) int roomId) {
+    public Room getRoomById(@PathVariable int roomId) {
         return roomJpaService.getRoomById(roomId);
     }
 
@@ -39,7 +40,7 @@ public class RoomController {
     }
 
     @GetMapping("/rooms/{roomId}/hotel")
-    public Hotel getRoomHotel(PathVariable int roomId) {
+    public Hotel getRoomHotel(@PathVariable int roomId) {
         return roomJpaService.getRoomHotel(roomId);
     }
 }
