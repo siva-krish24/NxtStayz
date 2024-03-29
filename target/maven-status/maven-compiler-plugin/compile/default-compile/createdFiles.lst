@@ -1,0 +1,11 @@
+com/example/nxtstayz/model/Room.class
+com/example/nxtstayz/controller/RoomController.class
+com/example/nxtstayz/NxtStayzApplication.class
+com/example/nxtstayz/model/Hotel.class
+com/example/nxtstayz/repository/HotelJpaRepository.class
+com/example/nxtstayz/repository/HotelRepository.class
+com/example/nxtstayz/repository/RoomRepository.class
+com/example/nxtstayz/repository/RoomJpaRepository.class
+com/example/nxtstayz/controller/HotelController.class
+com/example/nxtstayz/service/HotelJpaService.class
+com/example/nxtstayz/service/RoomJpaService.class

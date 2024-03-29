@@ -1,0 +1,11 @@
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/service/RoomJpaService.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/repository/RoomRepository.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/repository/RoomJpaRepository.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/model/Hotel.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/controller/RoomController.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/controller/HotelController.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/service/HotelJpaService.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/model/Room.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/repository/HotelJpaRepository.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/repository/HotelRepository.java
+/home/nxtwave/nxtstayz/src/main/java/com/example/nxtstayz/NxtStayzApplication.java
