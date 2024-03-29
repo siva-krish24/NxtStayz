@@ -29,18 +29,18 @@ public class RoomController {
         return roomJpaService.addRoom(room);
     }
 
-//    @PutMapping("/hotels/rooms/{roomId}")
-//    public Room updateRoom(@PathVariable("roomId") int roomId, @RequestBody Room room) {
-//        return roomJpaService.updateRoom(roomId, room);
-//    }
+    @PutMapping("/hotels/rooms/{roomId}")
+    public Room addRoom(@PathVariable("roomId") int roomId, @RequestBody Room room) {
+        return roomJpaService.updateRoom(roomId, room);
+    }
 
-//    @DeleteMapping("/hotels/rooms/{roomId}")
-//    public void deleteRoom(@PathVariable int roomId) {
-//        roomJpaService.deleteRoom(roomId);
-//    }
+    @DeleteMapping("/hotels/rooms/{roomId}")
+    public void deleteRoom(@PathVariable int roomId) {
+        roomJpaService.deleteRoom(roomId);
+    }
 
-//    @GetMapping("/rooms/{roomId}/hotel")
-//    public Hotel getRoomHotel(@PathVariable int roomId) {
-//        return roomJpaService.getRoomHotel(roomId);
-//    }
+    @GetMapping("/rooms/{roomId}/hotel")
+    public Hotel getRoomHotel(@PathVariable int roomId) {
+        return roomJpaService.getRoomHotel(roomId);
+    }
 }

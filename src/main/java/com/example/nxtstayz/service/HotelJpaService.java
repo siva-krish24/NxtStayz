@@ -1,26 +1,31 @@
 package com.example.nxtstayz.service;
 
 import com.example.nxtstayz.model.Hotel;
+import com.example.nxtstayz.model.Room;
 import com.example.nxtstayz.repository.HotelRepository;
 import com.example.nxtstayz.repository.HotelJpaRepository;
+import com.example.nxtstayz.repository.RoomJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HotelJpaService implements HotelRepository {
     @Autowired
     private HotelJpaRepository hotelJpaRepository;
+    @Autowired
+    private RoomJpaRepository roomJpaRepository;
     @Override 
     public List<Hotel> getHotels() {
-        List<Hotel> hotelList = hotelJpaRepository.findAll();
-        List<Hotel> hotels = new ArrayList<>(hotelList);
-        return hotels;
+       return new ArrayList<>(hotelJpaRepository.findAll());
     }
 
     @Override
@@ -64,11 +69,22 @@ public class HotelJpaService implements HotelRepository {
     @Override
     public void deleteHotel(int hotelId) {
         try {
-            hotelJpaRepository.deleteById(hotelId);
 
-        } catch (Exception e) {
+            List<Room> roomsList =  roomJpaRepository.findAll().stream()
+                    .filter(room -> room.getHotel().getHotelId() == hotelId).collect(Collectors.toList());
+
+                DeletedRecordsService.deletedHotels.put(hotelId, roomsList);
+                for(Room room : roomsList){
+                    room.setHotel(null);
+                    DeletedRecordsService.deletedRooms.put(room.getRoomId(),room);
+                }
+            roomJpaRepository.deleteAll(roomsList);
+            hotelJpaRepository.deleteById(hotelId);
+        }
+        catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+
     }
 }

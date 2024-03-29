@@ -21,10 +21,13 @@ public class HotelController {
     public List<Hotel> getHotels() {
         return hotelJpaService.getHotels();
     }
-
+    @PostMapping("/hotels")
+    public Hotel postHotels(@RequestBody Hotel hotel) {
+        return hotelJpaService.addHotel(hotel);
+    }
     @GetMapping("/hotels/{hotelId}")
-    public Room getHotelById(@PathVariable("roomId") int roomId) {
-        return roomJpaService.getRoomById(roomId);
+    public Hotel getHotelById(@PathVariable("hotelId") int hotelId) {
+        return hotelJpaService.getHotelByID(hotelId);
     }
 
     @PostMapping("/hotel/rooms")
@@ -32,18 +35,16 @@ public class HotelController {
         return roomJpaService.addRoom(room);
     }
 
-    @PutMapping("/hotels/rooms/{roomId}")
-    public Room updateRoom(@PathVariable("roomId") int roomId, @RequestBody Room room) {
-        return roomJpaService.updateRoom(roomId, room);
+    @PutMapping("/hotels/{hotelId}")
+    public Hotel updateHotel(@PathVariable("hotelId") int hotelId, @RequestBody Hotel hotel) {
+        return hotelJpaService.updateHotel(hotelId, hotel);
     }
-
-    @DeleteMapping("/hotels/rooms/{roomId}")
-    public void deleteRoom(@PathVariable int roomId) {
-        roomJpaService.deleteRoom(roomId);
+    @DeleteMapping("/hotels/{hotelId}")
+    public void deleteHotel(@PathVariable int hotelId) {
+        hotelJpaService.deleteHotel(hotelId);
     }
-
-    @GetMapping("/rooms/{roomId}/hotel")
-    public Hotel getRoomHotel(@PathVariable int roomId) {
-        return roomJpaService.getRoomHotel(roomId);
+    @GetMapping("/hotels/{hotelId}/rooms")
+    public List<Room> getRoomHotel(@PathVariable int hotelId) {
+        return roomJpaService.getHotelRooms(hotelId);
     }
 }

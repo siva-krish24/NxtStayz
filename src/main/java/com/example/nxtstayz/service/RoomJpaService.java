@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomJpaService implements RoomRepository {
@@ -28,8 +29,15 @@ public class RoomJpaService implements RoomRepository {
 
     public Room getRoomById(int roomId) {
         try {
+            if(roomJpaRepository.findById(roomId).isPresent()){
             Room room = roomJpaRepository.findById(roomId).get();
             return room;
+            }else if(DeletedRecordsService.deletedRooms.containsKey(roomId)){
+               return DeletedRecordsService.deletedRooms.get(roomId);
+            }
+            else{
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -51,10 +59,10 @@ public class RoomJpaService implements RoomRepository {
 
     public Room updateRoom(int roomId, Room room) {
         try {
-            Room newRoom = roomJpaRepository.findById(roomId).get();
+
+            Room newRoom =  roomJpaRepository.findById(roomId).get();
             if (room.getHotel() != null) {
-                int hotelID = room.getHotel().getHotelId();
-                Hotel newHotel = hotelJpaRepository.findById(hotelID).get();
+                newRoom.setHotel( room.getHotel());
             }
             if (room.getRoomNumber()!= null) {
                 newRoom.setRoomNumber(room.getRoomNumber());
@@ -64,17 +72,18 @@ public class RoomJpaService implements RoomRepository {
             }
             if (room.getPrice() != 0) {
                 newRoom.setPrice(room.getPrice());
-                return newRoom;
             }
+            roomJpaRepository.save(newRoom);
+            return newRoom;
         } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
-        return new Room();
     }
 
     public void deleteRoom(int roomId) {
         try {
-            roomJpaRepository.deleteById(roomId);
+            if(!DeletedRecordsService.deletedRooms.containsKey(roomId))
+                roomJpaRepository.deleteById(roomId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
@@ -87,6 +96,14 @@ public class RoomJpaService implements RoomRepository {
             Room room = roomJpaRepository.findById(roomId).get();
             Hotel hotel = room.getHotel();
             return hotel;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+    public List<Room> getHotelRooms(int hotelId) {
+        try {
+            List<Room> roomList = roomJpaRepository.findAll().stream().filter(room -> room.getHotel().getHotelId()==hotelId).collect(Collectors.toList());
+            return roomList;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
